@@ -1,0 +1,57 @@
+method: P2RNet
+resume: False
+finetune: True
+weight: ['out/p2rnet/train/pretrained_weight/script_level.pth']
+seed: 42
+device:
+  use_gpu: True
+  gpu_ids: '0'
+  num_workers: 0
+  world_size: 1 # will be overloaded by distributed setting
+  dist_url: env://
+data:
+  dataset: virtualhome
+  split: datasets/virtualhome_22_classes/splits/script_level
+  num_frames: 768
+  num_seeds: 512
+  seed_sampling: uniform
+  max_gt_boxes: 10
+  num_target: 128
+  vote_factor: 1
+  cluster_sampling: vote_fps
+  no_height: True
+  num_gaussian: 100
+model:
+  backbone:
+    method: STGCN
+    loss: Null
+  centervoting:
+    method: CenterVoteModule
+    loss: Null
+  detection:
+    method: ProposalNet
+    loss: BoxNetDetectionLoss
+test:
+  phase: 'full'
+  batch_size: 1
+  use_cls_nms: False
+  use_3d_nms: True
+  ap_iou_thresholds: [0.25, 0.5]
+  remove_far_box: True
+  nms_iou: 0.10
+  use_old_type_nms: False
+  per_class_proposal: True
+  conf_thresh: 0.05
+  multi_mode: False
+  sample_cls: False
+generation:
+  dump_results: True
+  dump_threshold: 0.5
+demo:
+  phase: 'full'
+log:
+  vis_path: visualization
+  save_results: True
+  vis_step: 1
+  print_step: 1
+  path: out/p2rnet

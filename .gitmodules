@@ -1,0 +1,6 @@
+[submodule "external/tsdf_fusion"]
+	path = external/tsdf_fusion
+	url = https://github.com/andyzeng/tsdf-fusion-python
+[submodule "external/virtualhome"]
+	path = external/virtualhome
+	url = https://github.com/xavierpuigf/virtualhome

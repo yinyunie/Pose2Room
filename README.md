@@ -4,7 +4,11 @@
 Yinyu Nie, Angela Dai, Xiaoguang Han, Matthias Nießner <br>
 In [ECCV, 2022](https://eccv2022.ecva.net/).
 
-<img src="out/resources/input.gif" alt="input.gif" width="30%" /> <img src="out/resources/pred.gif" alt="pred.gif" width="30%" /> <img src="out/resources/gt.gif" alt="gt.gif" width="30%" />
+<p>
+    <img width="240" alt="input" src="out/resources/input.gif"/>
+    <img width="240" alt="pred" src="out/resources/pred.gif"/>
+    <img width="240" alt="gt" src="out/resources/gt.gif"/>
+</p>
 
 ---
 

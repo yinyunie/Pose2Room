@@ -121,6 +121,7 @@ python ./utils/virtualhome/vis_results.py gt --pred-path out/p2rnet/test/a_folde
 ---
 
 ### Citation
+If you find our code and data helpful, please consider citing
 ```
 @article{nie2021pose2room,
 title={Pose2Room: Understanding 3D Scenes from Human Activities},
@@ -131,7 +132,7 @@ year={2021}
 ```
 
 ### Acknowledgments
-We synthesize our code using VirtualHome platform. If you find our code
+We synthesize our data using VirtualHome platform. If you find our data
 helpful, please also cite [VirtualHome](https://github.com/xavierpuigf/virtualhome) properly. 
 
 ### License

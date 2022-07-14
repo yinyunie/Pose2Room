@@ -70,7 +70,7 @@ You can check and modify the configurations in specifc files for your need.
 
 #### Training
 
-Here we take training on sequence-level split as an example:
+Here is an example of training on sequence-level split:
 
 For training on multiple GPUs, we use distributed data parallel and run
 ```commandline
@@ -82,7 +82,7 @@ You can also train on a single GPU by
 python main.py --config configs/config_files/p2rnet_train.yaml --mode train
 ```
 
-If you would like to train on room-level split, you can modify the data split to
+If you would like to train on room-level split, you can modify the data split to in `p2rnet_train.yaml` file
 ```angular2html
 data:
   split: datasets/virtualhome_22_classes/splits/room_level
@@ -93,7 +93,7 @@ You can monitor the training process using `tensorboard --logdir=runs`.
 The training log is saved in `./out/p2rnet/train/a_folder_with_time_stamp/log.txt`. 
 
 #### Testing
-After training, you can copy the trained weight path to
+After training, you can copy the trained weight path to `configs/config_files/p2rnet_test.yaml` file as
 ```commandline
 weight: ['out/p2rnet/train/a_folder_with_time_stamp/model_best.pth']
 ```

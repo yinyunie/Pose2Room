@@ -15,9 +15,13 @@ In [ECCV, 2022](https://eccv2022.ecva.net/).
 ### Install
 Our repository is developed under Ubuntu 20.04.
 
-1. We recommend to install with conda by
 ```
 git clone https://github.com/yinyunie/Pose2Room.git
+cd ./Pose2Room
+```
+
+1. We recommend to install with conda by
+```
 conda env create -f environment.yml
 conda activate p2rnet
 ```

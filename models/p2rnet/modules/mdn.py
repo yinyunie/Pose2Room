@@ -1,6 +1,7 @@
 #  Gaussian Mixture Model for probabilistic regression.
 #  Copyright (c) 10.2021. Yinyu Nie
 #  License: MIT
+#  reference: https://pytorch-tabular.readthedocs.io/en/latest/tutorials/07-Probabilistic%20Regression%20with%20MDN/
 
 import math
 import torch

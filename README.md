@@ -17,6 +17,7 @@ Our repository is developed under Ubuntu 20.04.
 
 1. We recommend to install with conda by
 ```
+git clone https://github.com/yinyunie/Pose2Room.git
 conda env create -f environment.yml
 conda activate p2rnet
 ```

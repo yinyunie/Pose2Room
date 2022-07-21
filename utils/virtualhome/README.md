@@ -3,7 +3,7 @@
 ---
 
 ## Install
-Our repository is developed under Ubuntu 20.04 with X server.
+We synthesize our dataset under Ubuntu 20.04 with X server.
 
 1. Clone [VirtualHome](https://github.com/xavierpuigf/virtualhome) repository to local, and checkout the specific commit id used in our paper by
 ```angular2html
@@ -14,13 +14,13 @@ git checkout c5c2d9633fbc0065ca0a3d3d868b66a9ee0b6956
 cd ../..
 ```
 
-2. Download the VirtualHome simulator (v2.2.3), and extract to local by
+2. Download the VirtualHome simulator (v2.2.3) to local
 ```angular2html
 cd ./external/virtualhome/simulation/unity_simulator
 wget http://virtual-home.org//release/simulator/v2.0/v2.2.3/linux_exec.zip
 ```
 
-3. Extract all items in `linux_exec.zip` to the `unity_simulator` folder, and make sure this folder looks like
+3. Extract all items in `linux_exec.zip` to the `./external/virtualhome/simulation/unity_simulator` folder, and make sure this folder looks like
 ```angular2html
 ./external/virtualhome/simulation/unity_simulator
 |-- ...
@@ -47,7 +47,7 @@ motions with objects using action scripts. It allows customization of action scr
 to execute a series of complex interactive tasks. We refer readers to [link](http://virtual-home.org/documentation/master/#)
 for more details of how VirtualHome works.
 
-We follow the routine of synthesizing motion data:
+We follow the routine below to synthesize our motion data:
 1. Generate **agent action scripts** and output **object bounding boxes** for each room.
 2. Use action scripts to synthesize **skeleton animations**.
 3. Export data for training.
@@ -57,7 +57,7 @@ We follow the routine of synthesizing motion data:
 Before generating skeleton animations, we first need to generate agent action scripts for each room. A action script
 is something like this:
 
-The character `<char0>` walks to a `candle`, grabs it and puts it onto a `bathroomcabinet`.
+The character `<char0>` walks to a `candle`, then grabs it and puts it onto a `bathroomcabinet`.
 ```html
 [...
  "<char0> [Walk] <candle> (70)", 
@@ -89,7 +89,7 @@ and extract it to the same folder)
 We use the generated action scripts to synthesize skeleton animations. There are several agent characters, where we use
 `'Chars/Female2'` as the agent model in our paper.
 
-Here we synthesize skeleton animations for all characters following the action scripts above:
+Here we synthesize skeleton animations for 5 characters following the action scripts above:
 ```commandline
 python ./utils/virtualhome/2_generate_skeletons.py
 ```

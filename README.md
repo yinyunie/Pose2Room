@@ -11,6 +11,11 @@ In [ECCV, 2022](https://eccv2022.ecva.net/).
 ### Install
 Our repository is developed under Ubuntu 20.04.
 
+```
+git clone https://github.com/yinyunie/Pose2Room.git
+cd ./Pose2Room
+```
+
 1. We recommend to install with conda by
 ```
 conda env create -f environment.yml
@@ -42,7 +47,7 @@ If everything goes smooth, there will be a GUI window popped up and you can inte
 ---
 ### Dataset
 We synthesize our dataset using [VirtualHome](https://github.com/xavierpuigf/virtualhome) platform.
-You can either download and extract the dataset from [link](https://tumde-my.sharepoint.com/:u:/g/personal/yinyu_nie_tum_de/ESeI-yefoelJvMEaj7LGm0UB9Jq1qYraq0BtsemMxBV-DQ?e=7JP5NE) (which is synthesized by ourselves) to 
+You can either download and extract the dataset from [link](https://tumde-my.sharepoint.com/:u:/g/personal/yinyu_nie_tum_de/ESeI-yefoelJvMEaj7LGm0UB9Jq1qYraq0BtsemMxBV-DQ?e=7JP5NE) to 
 ```angular2html
 /home/ynie/Projects/pose2room/datasets/virtualhome/samples/*.hdf5
 ```
@@ -66,7 +71,7 @@ You can check and modify the configurations in specifc files for your need.
 
 #### Training
 
-Here we take training on sequence-level split as an example:
+Here is an example of training on sequence-level split:
 
 For training on multiple GPUs, we use distributed data parallel and run
 ```commandline
@@ -78,7 +83,7 @@ You can also train on a single GPU by
 python main.py --config configs/config_files/p2rnet_train.yaml --mode train
 ```
 
-If you would like to train on room-level split, you can modify the data split to
+If you would like to train on room-level split, you can modify the data split to in `p2rnet_train.yaml` file
 ```angular2html
 data:
   split: datasets/virtualhome_22_classes/splits/room_level
@@ -89,7 +94,7 @@ You can monitor the training process using `tensorboard --logdir=runs`.
 The training log is saved in `./out/p2rnet/train/a_folder_with_time_stamp/log.txt`. 
 
 #### Testing
-After training, you can copy the trained weight path to
+After training, you can copy the trained weight path to `configs/config_files/p2rnet_test.yaml` file as
 ```commandline
 weight: ['out/p2rnet/train/a_folder_with_time_stamp/model_best.pth']
 ```
@@ -117,6 +122,7 @@ python ./utils/virtualhome/vis_results.py gt --pred-path out/p2rnet/test/a_folde
 ---
 
 ### Citation
+If you find our code and data helpful, please consider citing
 ```
 @article{nie2021pose2room,
 title={Pose2Room: Understanding 3D Scenes from Human Activities},
@@ -127,7 +133,7 @@ year={2021}
 ```
 
 ### Acknowledgments
-We synthesize our code using VirtualHome platform. If you find our code
+We synthesize our data using VirtualHome platform. If you find our data
 helpful, please also cite [VirtualHome](https://github.com/xavierpuigf/virtualhome) properly. 
 
 ### License

@@ -3,4 +3,4 @@
 	url = https://github.com/andyzeng/tsdf-fusion-python
 [submodule "external/virtualhome"]
 	path = external/virtualhome
-	url = git@github.com:xavierpuigf/virtualhome.git
+	url = https://github.com/xavierpuigf/virtualhome

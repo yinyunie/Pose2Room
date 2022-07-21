@@ -77,7 +77,7 @@ class CheckpointIO(object):
 
         torch.save(outdict, os.path.join(self.cfg.config['log']['path'], filename))
 
-    def load(self, filename, *domain):
+    def load(self, filename, device='cuda', *domain):
         '''
         load a module dictionary from local file or url.
         :param filename (str): name of saved module dictionary
@@ -85,11 +85,11 @@ class CheckpointIO(object):
         '''
 
         if self.is_url(filename):
-            return self.load_url(filename, *domain)
+            return self.load_url(filename, device, *domain)
         else:
-            return self.load_file(filename, *domain)
+            return self.load_file(filename, device, *domain)
 
-    def parse_checkpoint(self):
+    def parse_checkpoint(self, device='cuda'):
         '''
         check if resume or finetune from existing checkpoint.
         :return:
@@ -97,15 +97,15 @@ class CheckpointIO(object):
         if self.cfg.config['resume']:
             # resume everything including net weights, optimizer, last epoch, last loss.
             self.cfg.log_string('Begin to resume from the last checkpoint.')
-            self.resume()
+            self.resume(device)
         elif self.cfg.config['finetune']:
             # only load net weights.
             self.cfg.log_string('Begin to finetune from the existing weight.')
-            self.finetune()
+            self.finetune(device)
         else:
             self.cfg.log_string('Begin to train from scratch.')
 
-    def finetune(self):
+    def finetune(self, device='cuda'):
         '''
         finetune fron existing checkpoint
         :return:
@@ -119,10 +119,10 @@ class CheckpointIO(object):
             if not os.path.exists(weight_path):
                 self.cfg.log_string('Warning: finetune failed: the weight path %s is invalid. Begin to train from scratch.' % (weight_path))
             else:
-                self.load(weight_path, 'net')
+                self.load(weight_path, device, 'net')
                 self.cfg.log_string('Weights for finetuning loaded.')
 
-    def resume(self):
+    def resume(self, device='cuda'):
         '''
         resume the lastest checkpoint
         :return:
@@ -136,13 +136,13 @@ class CheckpointIO(object):
             if not os.path.exists(last_checkpoint):
                 continue
             else:
-                self.load(last_checkpoint)
+                self.load(last_checkpoint, device)
                 self.cfg.log_string('Last checkpoint resumed.')
                 return
 
         self.cfg.log_string('Warning: resume failed: No checkpoint available. Begin to train from scratch.')
 
-    def load_file(self, filename, *domain):
+    def load_file(self, filename, device='cuda', *domain):
         '''
         load a module dictionary from file.
         :param filename: name of saved module dictionary
@@ -151,20 +151,20 @@ class CheckpointIO(object):
 
         if os.path.exists(filename):
             self.cfg.log_string('Loading checkpoint from %s.' % (filename))
-            checkpoint = torch.load(filename)
+            checkpoint = torch.load(filename, map_location=device)
             scalars = self.parse_state_dict(checkpoint, *domain)
             return scalars
         else:
             raise FileExistsError
 
-    def load_url(self, url, *domain):
+    def load_url(self, url, device='cuda', *domain):
         '''
         load a module dictionary from url.
         :param url: url to a saved model
         :return:
         '''
         self.cfg.log_string('Loading checkpoint from %s.' % (url))
-        state_dict = model_zoo.load_url(url, progress=True)
+        state_dict = model_zoo.load_url(url, map_location=device, progress=True)
         scalars = self.parse_state_dict(state_dict, domain)
         return scalars
 

@@ -44,7 +44,7 @@ def run(cfg):
     checkpoint.register_modules(scheduler=scheduler)
 
     '''Check existing checkpoint (resume or finetune)'''
-    checkpoint.parse_checkpoint()
+    checkpoint.parse_checkpoint(device)
 
     '''Load trainer'''
     cfg.log_string('Loading trainer.')

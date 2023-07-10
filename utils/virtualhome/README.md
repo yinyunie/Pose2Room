@@ -113,7 +113,7 @@ python ./utils/virtualhome/3_generate_samples.py --no-augment
 
 The data for training will be saved in `datasets/virtualhome_22_classes/samples/*`
 
-(*Note: you can also download this data from [link](https://tumde-my.sharepoint.com/:u:/g/personal/yinyu_nie_tum_de/ESeI-yefoelJvMEaj7LGm0UBRoNIHXaUM8tAELnFYuuJKg?e=MtRCAN),
+(*Note: you can also download this data from [link](https://tumde-my.sharepoint.com/:u:/g/personal/yinyu_nie_tum_de/ESeI-yefoelJvMEaj7LGm0UB9Jq1qYraq0BtsemMxBV-DQ?e=kCGMVP),
 and extract it to the same folder)
 
 
